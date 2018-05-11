@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Model\user;
+
+use Illuminate\Database\Eloquent\Model;
+
+class tag extends Model
+{
+    public function posts(){
+    	return $this->belongsToMany('App\Model\user\post','post_tags')->orderBy('created_at','DESC')->paginate(4);
+    }
+     public function archives(){
+    	return $this->belongsToMany('App\Model\user\archive','archive_tags')->orderBy('created_at','DESC')->paginate(4);
+    }
+    public function getRouteKeyName(){
+   	return 'slug';
+   }
+}
